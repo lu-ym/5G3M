@@ -79,8 +79,8 @@
  * @return void
  */
 void merge(int* A, int ALen, int m, int* B, int BLen, int n) {
-    // int i = ALen - 1;
-    int i = ALen+BLen - 1;  // 牛客网的input或者其他参数有问题
+    int i = ALen - 1;
+    // int i = ALen+BLen - 1;  // 牛客网的input或者其他参数有问题
     m--;
     n--;
     while(n>=0){
@@ -113,7 +113,8 @@ void main(){
     merge(A,6,3,B,3,3);
     for ( i = 0; i < 6; i++)
     {
-        printf("%d",A[i]);
+        printf("%d ",A[i]);
     }
+    printf("\r\n",A[i]);
     
 }
