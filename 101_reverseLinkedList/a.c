@@ -49,9 +49,13 @@ struct ListNode {
  * 复杂度分析
 时间复杂度：O(n)O(n)，其中 nn 是链表的长度。需要遍历链表一次。
 空间复杂度：O(1)O(1)。
- * leetcode编译显示超时
+ * leetcode执行耗时：4ms
+ *  memory:6.4MB
  * */
 struct ListNode* reverseList(struct ListNode* head){
+    if(head == NULL){
+        return head;
+    }
     struct ListNode * cur,*pre,*next;
     pre = head;
     cur = head->next;
@@ -82,12 +86,15 @@ struct ListNode* reverseList(struct ListNode* head){
 作者：LeetCode
 链接：https://leetcode-cn.com/problems/reverse-linked-list/solution/fan-zhuan-lian-biao-by-leetcode/
 来源：力扣（LeetCode）
+
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+实际耗时：4ms
+内存消耗：6.4MB
  * */
 struct ListNode* reverseList(struct ListNode* head){
     struct ListNode * cur,*result;
-    // how to find the 
-    if (head->next == NULL || head == NULL)
+    // head must be the first check item to avoid NULL linked list.
+    if (head == NULL || head->next == NULL )
     {
         return head;
     }else{
