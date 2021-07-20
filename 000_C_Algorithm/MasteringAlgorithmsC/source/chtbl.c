@@ -14,7 +14,12 @@
 
 #pragma mark - Public
 
-
+/**
+ * @param: buckets -- 桶的个数
+ * @param: int (*h) -- 哈希函数
+ * @param: (*match) -- 判断两个键是否匹配。如果相等，返回1；否则返回其他值。
+ * @return: 0 -- pass. -1 -- fail.
+ * */
 int chtbl_init(CHTbl *htbl, int buckets,
                int (*h)(const void *key),
                int (*match)(const void *key1, const void *key2),
@@ -23,7 +28,7 @@ int chtbl_init(CHTbl *htbl, int buckets,
   
   int     i;
   
-  /// 创建 hash 表所需空间
+  /// 创建 hash 表所需空间,连续空间，可以用数组表示。
   if ((htbl->table = (List *)malloc(buckets * sizeof(List))) == NULL) return -1;
   
   /// 初始化 buckets
@@ -63,7 +68,9 @@ void chtbl_destroy(CHTbl *htbl)
   return;
 }
 
-
+/**
+ * @return: 0 -- 插入成功。 1--已经包含此元素。-1：others.
+ * */
 int chtbl_insert(CHTbl *htbl, const void *data)
 {
   
@@ -86,7 +93,9 @@ int chtbl_insert(CHTbl *htbl, const void *data)
   return retval;
 }
 
-
+/**
+ * @return: 0 -- success. -1：others.
+ * */
 int chtbl_remove(CHTbl *htbl, void **data)
 {
   

@@ -103,7 +103,10 @@ int set_union(Set *setu, const Set *set1, const Set *set2)
   return 0;
 }
 
-
+/**
+ * @param: seti -- 新创建的交集
+ * @return: 0 if success. -1 if fail.
+ * */
 int set_intersection(Set *seti, const Set *set1, const Set *set2)
 {
   ListElmt    *member;

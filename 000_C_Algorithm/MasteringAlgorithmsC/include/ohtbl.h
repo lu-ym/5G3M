@@ -18,7 +18,7 @@
 typedef struct OHTbl_
 {
   int     positions;
-  void    *vacated;
+  void    *vacated; // 充当一个哨兵，表示已经被删除过元素。如果是在探查，则继续；如果是插入元素，可以插入。
   
   int     (*h1)(const void *key);
   int     (*h2)(const void *key);
@@ -26,7 +26,7 @@ typedef struct OHTbl_
   void    (*destroy)(void *data);
   
   int     size;
-  void    **table;
+  void    **table;  // 数组，存储元素
   
 } OHTbl;
 

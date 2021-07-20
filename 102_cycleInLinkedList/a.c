@@ -120,8 +120,57 @@ bool hasCycle(struct ListNode *head) {
     return false;
 } 
 /**
- * TODO: 哈希表法：
+ * 哈希表法：
+ * 思路及算法
+最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。
+
+具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，
+如果该节点已经存在于哈希表中，则说明该链表是环形链表，否则就将该节点加入哈希表中。
+重复这一过程，直到我们遍历完整个链表即可
+
+复杂度分析
+
+时间复杂度：O(N)O(N)，其中 NN 是链表中的节点数。最坏情况下我们需要遍历每个节点一次。
+
+空间复杂度：O(N)O(N)，其中 NN 是链表中的节点数。主要为哈希表的开销，最坏情况下我们需要将每个节点插入到哈希表中一次。
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/linked-list-cycle/solution/huan-xing-lian-biao-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  * */
+// 需要手动实现hashtable, 所以没有单独去验证
+// struct hashTable {
+//     struct ListNode* key;
+//     UT_hash_handle hh;
+// };
+
+// struct hashTable* hashtable;
+
+// struct hashTable* find(struct ListNode* ikey) {
+//     struct hashTable* tmp;
+//     HASH_FIND_PTR(hashtable, &ikey, tmp);
+//     return tmp;
+// }
+
+// void insert(struct ListNode* ikey) {
+//     struct hashTable* tmp = malloc(sizeof(struct hashTable));
+//     tmp->key = ikey;
+//     HASH_ADD_PTR(hashtable, key, tmp);
+// }
+
+// bool hasCycle(struct ListNode* head) {
+//     hashtable = NULL;
+//     while (head != NULL) {
+//         if (find(head) != NULL) {
+//             return true;
+//         }
+//         insert(head);
+//         head = head->next;
+//     }
+//     return false;
+// }
+
 
 
 void main(){

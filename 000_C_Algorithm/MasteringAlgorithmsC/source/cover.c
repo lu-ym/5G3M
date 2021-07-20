@@ -30,7 +30,6 @@ int cover(Set *members, Set *subsets, Set *covering)
   while (set_size(members) > 0 && set_size(subsets) > 0) {
     
     ///找到覆盖最多成员的子集
-    
     max_size = 0;
     
     for (member = list_head(subsets); member != NULL; member = list_next(member)) {
