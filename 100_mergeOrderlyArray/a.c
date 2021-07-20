@@ -19,7 +19,7 @@
     A: [1,2,2,3,5,6]
 */
 /**
- * 3ms, 360K
+ * 运行时间14ms. 内存416KB
  * 归并有序数组。个人实现，简单，但是效率一般。
  * @param A int整型一维数组 
  * @param ALen int A数组长度
@@ -71,7 +71,8 @@
 //     }
 // }
 /**
- * 3ms, 364K
+ * C语言的实现
+ * 9ms, 508KB
  * @param A int整型一维数组 
  * @param ALen int A数组长度
  * @param B int整型一维数组 
