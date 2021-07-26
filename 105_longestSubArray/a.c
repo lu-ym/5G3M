@@ -109,7 +109,7 @@ struct sub2Array{
 
 //     return max_size;
 // }
-
+// TODO: next level study
 
 void main(){
     int result;
