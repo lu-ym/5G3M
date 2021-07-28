@@ -21,7 +21,7 @@ typedef struct BfsVertex_
   void          *data;
 
   VertexColor   color;
-  int                hops;
+  int           hops; // 该节点的跳数
 
 } BfsVertex;
 
@@ -30,7 +30,7 @@ typedef struct BfsVertex_
  在 graph 指定的图执行广度优先搜索 - O(V+E) V是图中顶点的个数，E是边的个数
 
  @param graph 图
- @param start 起始的顶点
+ @param start 跳数起始的顶点
  @param hops 跳数链表
  @return 成功返回0；否则返回-1
  */

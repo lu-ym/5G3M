@@ -20,7 +20,7 @@ typedef struct Heap_
   int     (*compare)(const void *key1, const void *key2);
   void    (*destroy)(void *data);
 
-  void    **tree;
+  void    **tree;   // Data Array.是数组来实现二叉树。dynamic array.
 
 } Heap;
 

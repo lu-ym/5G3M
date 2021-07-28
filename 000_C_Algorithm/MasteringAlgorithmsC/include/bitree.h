@@ -128,7 +128,7 @@ int bitree_merge(BiTree *merge, BiTree *left, BiTree *right, const void *data);
 
 /**
  判断由参数 node 所标识结点是否为二叉树中某个分支的结束 - O(1)
-
+  End of Branch
  @param node 待判断结点
  @return 分支结束则返回1；否则返回0
  */

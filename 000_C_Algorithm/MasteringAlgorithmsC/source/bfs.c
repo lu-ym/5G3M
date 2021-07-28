@@ -38,7 +38,7 @@ int bfs(Graph *graph, BfsVertex *start, List *hops)
 
       /// 初始化其他顶点
       clr_vertex->color = white;
-      clr_vertex->hops = -1;
+      clr_vertex->hops = -1;  
 
     }
   }
@@ -53,7 +53,7 @@ int bfs(Graph *graph, BfsVertex *start, List *hops)
     return -1;
   }
 
-  if (queue_enqueue(&queue, clr_adjlist) != 0) {
+  if (queue_enqueue(&queue, clr_adjlist) != 0) {  // 把顶点的adjlist压入队列
 
     queue_destroy(&queue);
     return -1;
@@ -69,17 +69,17 @@ int bfs(Graph *graph, BfsVertex *start, List *hops)
 
     for (member = list_head(&adjlist->adjacent); member != NULL; member = list_next(member)) {
 
-      adj_vertex = list_data(member);
+      adj_vertex = list_data(member); // 得到当前顶点
 
       /// 确定下个邻接顶点的颜色
-
+      // 得到这个顶点的邻接表
       if (graph_adjlist(graph, adj_vertex, &clr_adjlist) != 0) {
 
         queue_destroy(&queue);
         return -1;
       }
 
-      clr_vertex = clr_adjlist->vertex;
+      clr_vertex = clr_adjlist->vertex; // 这个顶点邻接表的顶点
 
       /// 将白顶点着色为灰色并将邻接表入队
 
@@ -88,8 +88,7 @@ int bfs(Graph *graph, BfsVertex *start, List *hops)
         clr_vertex->color = gray;
         clr_vertex->hops = ((BfsVertex *)adjlist->vertex)->hops + 1;
 
-        if (queue_enqueue(&queue, clr_adjlist) != 0) {
-
+        if (queue_enqueue(&queue, clr_adjlist) != 0) {  // 入队，继续检查它的临近表
           queue_destroy(&queue);
           return -1;
         }

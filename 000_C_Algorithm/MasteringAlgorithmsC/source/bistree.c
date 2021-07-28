@@ -41,15 +41,14 @@ static void rotate_left(BiTreeNode **node)
   } else {
 
     /// 执行 LR ( Left-Right ) 旋转操作
-
     grandchild = bitree_right(left);
     bitree_right(left) = bitree_left(grandchild);
     bitree_left(grandchild) = left;
     bitree_left(*node) = bitree_right(grandchild);
     bitree_right(grandchild) = *node;
-
+    // 更新平衡因子
     switch (((AvlNode *)bitree_data(grandchild))->factor) {
-
+      
       case AVL_LFT_HEAVY:
 
         ((AvlNode *)bitree_data(*node))->factor = AVL_RGT_HEAVY;
@@ -101,14 +100,14 @@ static void rotate_right(BiTreeNode **node)
 
   } else {
 
-    /// 执行 RR ( Right-Right ) 旋转操作
+    /// 执行 RL ( Right-Left ) 旋转操作
 
     grandchild = bitree_left(right);
     bitree_left(right) = bitree_right(grandchild);
     bitree_right(grandchild) = right;
     bitree_right(*node) = bitree_left(grandchild);
     bitree_left(grandchild) = *node;
-
+    // 更新factor，平衡因子
     switch (((AvlNode *)bitree_data(grandchild))->factor) {
 
       case AVL_LFT_HEAVY:
@@ -289,13 +288,13 @@ static int insert(BisTree *tree, BiTreeNode **node, const void *data, int *balan
         switch (((AvlNode *)bitree_data(*node))->factor) {
 
           case AVL_LFT_HEAVY:
-
+            // 已经是左树heavy,又加在了左树上，即将不平衡，需要做rotate
             rotate_left(node);
             *balanced = 1;
             break;
 
           case AVL_BALANCED:
-
+          
             ((AvlNode *)bitree_data(*node))->factor = AVL_LFT_HEAVY;
             break;
 
@@ -336,7 +335,7 @@ static int insert(BisTree *tree, BiTreeNode **node, const void *data, int *balan
         switch (((AvlNode *)bitree_data(*node))->factor) {
 
           case AVL_LFT_HEAVY:
-
+            // 已经是右树heavy,又加在了右树上，即将不平衡，需要做rotate
             ((AvlNode *)bitree_data(*node))->factor = AVL_BALANCED;
             *balanced = 1;
             break;

@@ -39,8 +39,7 @@ int put_parcel(PQueue *parcels, const Parcel *parcel)
   if ((data = (Parcel *)malloc(sizeof(Parcel))) == NULL) return -1;
 
   /// 将包裹插入到优先队列
-  
-  memcpy(data, parcel, sizeof(Parcel));
+  memcpy(data, parcel, sizeof(Parcel)); // 不直接用paracel,防止参数被释放
   
   if (pqueue_insert(parcels, data) != 0) return -1;
   

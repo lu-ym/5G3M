@@ -85,7 +85,7 @@ int heap_insert(Heap *heap, const void *data)
   void      *temp;
   int       ipos, ppos;
 
-  /// 创建结点空间
+  /// 创建结点空间. 扩大原有的数组
   if ((temp = (void **)realloc(heap->tree, (heap_size(heap) + 1) * sizeof (void *))) == NULL) return -1;
 
   heap->tree = temp;
@@ -96,7 +96,7 @@ int heap_insert(Heap *heap, const void *data)
   /// 通过将节点上推保障树的平衡
   ipos = heap_size(heap);
   ppos = heap_parent(ipos);
-
+  // 检查堆是不是平衡：比较当前节点和父节点，如果比父节点大，往前移动
   while (ipos > 0 && heap->compare(heap->tree[ppos], heap->tree[ipos]) < 0) {
 
     /// 交换当前结点与父结点内容
@@ -104,7 +104,7 @@ int heap_insert(Heap *heap, const void *data)
     heap->tree[ppos] = heap->tree[ipos];
     heap->tree[ipos] = temp;
 
-    /// 将结点向上移动一层保障树的平衡
+    /// 将结点向上移动一层保障树的平衡。 更新新的节点ID.
     ipos = ppos;
     ppos = heap_parent(ipos);
 
@@ -116,7 +116,9 @@ int heap_insert(Heap *heap, const void *data)
   return 0;
 }
 
-
+/**
+ *  从堆 heap 中释放堆顶部的结点 - O(lg n)
+ * */
 int heap_extract(Heap *heap, void **data)
 {
   void      *save, *temp;
@@ -129,7 +131,7 @@ int heap_extract(Heap *heap, void **data)
   *data = heap->tree[0];
 
   /// 调整堆的存储空间
-  save = heap->tree[heap_size(heap) - 1];
+  save = heap->tree[heap_size(heap) - 1]; // 保存末端节点
 
   if (heap_size(heap) - 1 > 0) {
 
@@ -150,11 +152,11 @@ int heap_extract(Heap *heap, void **data)
     return 0;
   }
 
-  /// 保存最后一个结点的内容到树顶端
+  /// 保存最后一个结点（末端）的内容到树顶端
 
   heap->tree[0] = save;
 
-  /// 通过将顶部节点下移保障树的平衡
+  /// 通过将顶部节点逐层下移保障树的平衡
   ipos = 0;
   lpos = heap_left(ipos);
   rpos = heap_right(ipos);
@@ -162,22 +164,21 @@ int heap_extract(Heap *heap, void **data)
   while (1) {
 
     /// 选择与当前结点交换的子结点
-
     lpos = heap_left(ipos);
     rpos = heap_right(ipos);
-
+    // 检查左树是否需要调整
     if (lpos < heap_size(heap) && heap->compare(heap->tree[lpos], heap->tree[ipos]) > 0) {
 
-      mpos = lpos;
+      mpos = lpos;  // mark需要更新的点
 
     } else {
 
       mpos = ipos;
     }
-
+    // 检查右树是否需要调整
     if (rpos < heap_size(heap) && heap->compare(heap->tree[rpos], heap->tree[mpos]) > 0) {
 
-      mpos = rpos;
+      mpos = rpos;  // mark需要更新的点,放在后面，优先更新右树
     }
 
     /// 当 mpos 就是 ipos 时，堆已经完成调整

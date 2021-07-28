@@ -31,18 +31,18 @@ typedef struct AdjList_
  */
 typedef struct Graph_
 {
-  int       vcount;
-  int       ecount;
+  int       vcount;   // vertex count顶点的个数
+  int       ecount;   // edge, 边的个数
 
   int       (*match)(const void *key1, const void *key2);
   void      (*destroy)(void *data);
 
-  List      adjlists;
+  List      adjlists; // 临接结构表。每一个元素都是struct AdjList
 
 } Graph;
 
 /**
- 结点颜色
+ 结点颜色定义
  */
 typedef enum VertexColor_ {white, gray, black} VertexColor;
 

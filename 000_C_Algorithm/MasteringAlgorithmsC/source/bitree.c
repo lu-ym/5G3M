@@ -128,7 +128,7 @@ void bitree_rem_left(BiTree *tree, BiTreeNode *node)
   /// 移除结点（按照后序遍历从参数 node 的左子结点开始依次移除）
   if (*position != NULL) {
     
-    bitree_rem_left(tree, *position);
+    bitree_rem_left(tree, *position); // 递归
     bitree_rem_right(tree, *position);
     
     if (tree->destroy != NULL) {
@@ -166,7 +166,7 @@ void bitree_rem_right(BiTree *tree, BiTreeNode *node)
   if (*position != NULL) {
     
     bitree_rem_left(tree, *position);
-    bitree_rem_right(tree, *position);
+    bitree_rem_right(tree, *position);  // 递归
     
     if (tree->destroy != NULL) {
       /// 执行用户指定的 destroy 函数

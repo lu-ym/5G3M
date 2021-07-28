@@ -1,6 +1,6 @@
 //
 //  queue.c
-//  Algorithms - queue
+//  Algorithms - queue/队列
 //
 //  Created by YourtionGuo on 25/04/2017.
 //  Copyright © 2017 Yourtion. All rights reserved.

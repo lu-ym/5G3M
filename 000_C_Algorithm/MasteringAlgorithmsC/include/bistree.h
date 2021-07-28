@@ -66,7 +66,8 @@ int bistree_insert(BisTree *tree, const void *data);
 
 
 /**
- 在由参数 tree 所指定二叉搜索树中移除数据 data 相吻合的结点 - O(lg n)
+ @brief 在由参数 tree 所指定二叉搜索树中移除数据 data 相吻合的结点 - O(lg n)
+ @note 这是一种惰性溢出，即改结点只是简单的标记为隐藏，并不会删除数据。
 
  @param tree 二叉搜索树
  @param data 已移除结点的存储数据

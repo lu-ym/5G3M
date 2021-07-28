@@ -39,14 +39,14 @@ static int dfs_main(Graph *graph, AdjList *adjlist, List *ordered)
 
     adj_vertex = list_data(member);
 
-    if (graph_adjlist(graph, adj_vertex, &clr_adjlist) != 0) return -1;
+    if (graph_adjlist(graph, adj_vertex, &clr_adjlist) != 0) return -1;// 寻找vertex的adjcent list
 
-    clr_vertex = clr_adjlist->vertex;
+    clr_vertex = clr_adjlist->vertex; // 寻找adjcent的顶点
 
     /// 深入邻接顶点如果为白色
 
     if (clr_vertex->color == white) {
-
+      // 递归找下一个，直到找到尽头一个？？？？？
       if (dfs_main(graph, clr_adjlist, ordered) != 0)return -1;
 
     }
@@ -73,7 +73,7 @@ int dfs(Graph *graph, List *ordered)
   for (element = list_head(&graph_adjlists(graph)); element != NULL; element = list_next(element)) {
 
     vertex = ((AdjList *)list_data(element))->vertex;
-    vertex->color = white;
+    vertex->color = white;  // 全部标记为白色
 
   }
 
