@@ -47,7 +47,7 @@ static int merge(void *data, int esize, int i, int j, int k,
 
       /// 左半部分还有元素
       while (jpos <= k) {
-
+        // 把右半部分的元素复制进去
         memcpy(&m[mpos * esize], &a[jpos * esize], esize);
         jpos++;
         mpos++;
@@ -69,7 +69,7 @@ static int merge(void *data, int esize, int i, int j, int k,
       continue;
     }
 
-    /// 添加下一个元素到已排序数组
+    /// 把较小的元素添加到已排序数组
 
     if (compare(&a[ipos * esize], &a[jpos * esize]) < 0) {
 
@@ -97,7 +97,9 @@ static int merge(void *data, int esize, int i, int j, int k,
 
 #pragma mark - Public
 
-
+/**
+ * 实际的mergesort接口，递归的对数组进行排序
+ * */
 int mgsort(void *data, int size, int esize, int i, int k,
            int (*compare)(const void *key1, const void *key2))
 {
@@ -113,7 +115,7 @@ int mgsort(void *data, int size, int esize, int i, int k,
     if (mgsort(data, size, esize, i, j, compare) < 0) return -1;
     if (mgsort(data, size, esize, j + 1, k, compare) < 0) return -1;
 
-    /// 合并两个已排序白部分
+    /// 合并两个已排序的部分
     if (merge(data, esize, i, j, k, compare) < 0) return -1;
     
   }

@@ -84,7 +84,7 @@ int lz77_compress(const unsigned char *original, unsigned char **compressed, int
   /// 初始化最初的压缩结果为空
   *compressed = NULL;
 
-  /// 写入头部数据
+  /// 写入头部数据 -- 数据总长度
   hsize = sizeof(int);
 
   if ((comp = (unsigned char *)malloc(hsize)) == NULL) return -1;
@@ -114,7 +114,7 @@ int lz77_compress(const unsigned char *original, unsigned char **compressed, int
 
     if ((length = compare_win(window, buffer, &offset, &next)) != 0) {
 
-      /// 编码短语标记
+      /// 编码短语标记 -- 最高位是1
       token = 0x00000001 << (LZ77_PHRASE_BITS - 1);
 
       /// 设置偏移量当在滑动窗口中找到结果

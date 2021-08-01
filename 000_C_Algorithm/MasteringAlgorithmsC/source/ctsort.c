@@ -12,7 +12,9 @@
 #include "sort.h"
 
 #pragma mark - Public
-
+/**
+ * @param k 最大值
+ * */
 int ctsort(int *data, int size, int k)
 {
   int       *counts, *temp;

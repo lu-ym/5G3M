@@ -29,7 +29,7 @@ typedef struct HuffNode_
 typedef struct HuffCode_
 {
   unsigned char     used;
-  unsigned short    code;
+  unsigned short    code;   // 编码值。有证明过编码不会超过16bits.
   unsigned char     size;
 
 } HuffCode;
@@ -75,7 +75,6 @@ int huffman_uncompress(const unsigned char *compressed, unsigned char **original
 
 /// LZ77符号长度
 #define     LZ77_SYMBOL_BITS    (LZ77_TYPE_BITS+LZ77_NEXT_BITS)
-#define LZ77_SYNBOL_BITS (LZ77_TYPE_BITS+LZ77_NEXT_BITS)
 
 
 /**

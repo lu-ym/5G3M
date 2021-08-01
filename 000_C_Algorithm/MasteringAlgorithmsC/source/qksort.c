@@ -1,6 +1,6 @@
 //
 //  qksort.c
-//  Algorithms - Quicksort
+//  Algorithms - Quicksort 快排
 //
 //  Created by YourtionGuo on 10/05/2017.
 //  Copyright © 2017 Yourtion. All rights reserved.
@@ -86,7 +86,7 @@ static int partition(void *data, int esize, int i, int k,
 
     } else {
 
-      /// 交换找到元素的位置
+      /// 交换找到的元素
       memcpy(temp, &a[i * esize], esize);
       memcpy(&a[i * esize], &a[k * esize], esize);
       memcpy(&a[k * esize], temp, esize);
@@ -117,7 +117,7 @@ int qksort(void *data, int size, int esize, int i, int k,
     /// 确定分区位置
     if ((j = partition(data, esize, i, k, compare)) < 0) return -1;
 
-    /// 递归处理右半部分
+    /// 递归处理左半部分
     if (qksort(data, size, esize, i, j, compare) < 0) return -1;
 
     /// 递归处理右半部分

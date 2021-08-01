@@ -14,13 +14,16 @@
 #include "sort.h"
 
 #pragma mark - Public
-
+/**
+ * @param p 位的个数
+ * @param k 基数
+ * */
 int rxsort(int *data, int size, int p, int k)
 {
   int       *counts, *temp;
   int       index, pval, i, j, n;
 
-  /// 初始化 counts 空间
+  /// 初始化 counts 空间，提供给sub 计数排序
   if ((counts = (int *)malloc(k * sizeof(int))) == NULL) return -1;
 
   /// 初始化空间用于排序结果
@@ -36,7 +39,7 @@ int rxsort(int *data, int size, int p, int k)
     }
 
     /// 计算当前位数值
-    pval = (int)pow((double)k, (double)n);
+    pval = (int)pow((double)k, (double)n);  // math. 求幂函数，参数为基数和指数
 
     /// 对当前位置进行计数
     for (j = 0; j < size; j++) {

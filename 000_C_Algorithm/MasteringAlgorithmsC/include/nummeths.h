@@ -41,8 +41,8 @@ void lsqe(const double *x, const double *y, int n, double *b1, double *b0);
  @param f 计算方程
  @param g 函数 f 的导数
  @param x 计算出的近似值数组
- @param n x 中的元素个数
- @param delta 逐次逼近的差值
+ @param n input -- 迭代的最大次数。output-- 返回时，代表数组x中的元素个数。
+ @param delta 逐次逼近的差值要求，用该值来确定何时应该结束迭代，小于此差值表示找到了符合的点。
  @return 找到根返回0；否则返回-1
  */
 int root(double (*f)(double x), double (*g)(double x), double *x, int *n, double delta);

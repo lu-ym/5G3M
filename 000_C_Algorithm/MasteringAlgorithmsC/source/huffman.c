@@ -66,14 +66,14 @@ static void destroy_tree(void *tree)
 static int build_tree(int *freqs, BiTree **tree) {
 
   BiTree      *init, *merge, *left, *right;
-  PQueue      pqueue;
+  PQueue      pqueue; // 优先队列
   HuffNode    *data;
   int         size, c;
 
   /// 初始化二叉树优先队列
 
   *tree = NULL;
-
+  // 传入compare_freq，保证优先队列以freq为主，保证效率
   pqueue_init(&pqueue, compare_freq, destroy_tree);
 
   for (c = 0; c <= UCHAR_MAX; c++) {
@@ -121,7 +121,6 @@ static int build_tree(int *freqs, BiTree **tree) {
   }
 
   /// 通过合并优先队列中的二叉树构建霍夫曼树
-
   size = pqueue_size(&pqueue);
 
   for (c = 1; c <= size - 1; c++) {
@@ -214,19 +213,20 @@ static int build_tree(int *freqs, BiTree **tree) {
  @param size 编码的位数
  @param table 霍夫曼编码结果
  */
-static void build_table(BiTreeNode *node, unsigned short code, unsigned char size, HuffCode *table) {
+static void build_table(BiTreeNode *node, unsigned short code, unsigned char size, 
+    HuffCode *table) {
 
   if (!bitree_is_eob(node)) {
 
     if (!bitree_is_eob(bitree_left(node))) {
 
-      /// 向左移动并在编码末尾追加 0
+      /// 树向左移动，并在编码末尾追加 0
       build_table(bitree_left(node), code << 1, size + 1, table);
     }
 
     if (!bitree_is_eob(bitree_right(node))) {
 
-      /// 向右移动并在编码末尾追加 1
+      /// 树向右移动，并在编码末尾追加 1
       build_table(bitree_right(node), (code << 1) | 0x0001, size + 1, table);
     }
 
@@ -253,7 +253,7 @@ static void build_table(BiTreeNode *node, unsigned short code, unsigned char siz
 int huffman_compress(const unsigned char *original, unsigned char **compressed, int size)
 {
   BiTree          *tree;
-  HuffCode        table[UCHAR_MAX + 1];
+  HuffCode        table[UCHAR_MAX + 1]; // 数组索引就是字母id,方便解索引
   int             freqs[UCHAR_MAX + 1], max, scale, hsize, ipos, opos, cpos, c, i;
   unsigned char   *comp, *temp;
 
@@ -279,7 +279,7 @@ int huffman_compress(const unsigned char *original, unsigned char **compressed, 
 
   /// 缩放频率以适应一个 byte 大小（可以只用一个字节来表示）
 
-  max = UCHAR_MAX;
+  max = UCHAR_MAX;  // UCHAR_MAX is 255,最多可以用一个byte表示。max是int，可以扩大
 
   for (c = 0; c <= UCHAR_MAX; c++) {
 
@@ -288,9 +288,9 @@ int huffman_compress(const unsigned char *original, unsigned char **compressed, 
     }
   }
 
-  for (c = 0; c <= UCHAR_MAX; c++) {
+  for (c = 0; c <= UCHAR_MAX; c++) {  
 
-    scale = (int)(freqs[c] / ((double)max / (double)UCHAR_MAX));
+    scale = (int)(freqs[c] / ((double)max / (double)UCHAR_MAX));  // 转换成缩放后的概率值。
 
     if (scale == 0 && freqs[c] != 0) {
       /// 确保当任何非 0 频率值其缩减为小于 1 时，最终应该将其设为 1 而不是 0
@@ -315,11 +315,11 @@ int huffman_compress(const unsigned char *original, unsigned char **compressed, 
 
   /// 写入头部信息
 
-  hsize = sizeof(int) + (UCHAR_MAX + 1);
+  hsize = sizeof(int) + (UCHAR_MAX + 1);  // 头部总长度
 
   if ((comp = (unsigned char *)malloc(hsize)) == NULL) return -1;
 
-  memcpy(comp, &size, sizeof(int));
+  memcpy(comp, &size, sizeof(int)); // 数据总长度
 
   for (c = 0; c <= UCHAR_MAX; c++) {
     comp[sizeof(int) + c] = (unsigned char)freqs[c];
@@ -327,8 +327,8 @@ int huffman_compress(const unsigned char *original, unsigned char **compressed, 
 
   /// 压缩数据
 
-  ipos = 0;
-  opos = hsize * 8;
+  ipos = 0;           // 原始数据中正在处理的当前字节
+  opos = hsize * 8;   // 向压缩数据缓冲区写入的当前位
 
   while (ipos < size) {
 
@@ -352,7 +352,7 @@ int huffman_compress(const unsigned char *original, unsigned char **compressed, 
 
       }
 
-      cpos = (sizeof(short) * 8) - table[c].size + i;
+      cpos = (sizeof(short) * 8) - table[c].size + i; // copy的bit的位置
       bit_set(comp, opos, bit_get((unsigned char *)&table[c].code, cpos));
       opos++;
 
