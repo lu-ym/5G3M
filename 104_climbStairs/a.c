@@ -36,7 +36,7 @@
  * 暴力解法:只x+2*y==n不对，要考虑顺序，先2再1，和先1再2。用排列组合的思想。
  * 耗时0ms, memory 5.2MB.
  * */
-// 递归算组合数
+// 算x和y有多少种排列。递归算组合数  -- 纯数学方法A(m+n)n的方式，一边计算分母，一边计算分子，效果非常好
 int cal(int x,int y, long accum,long div){
     if(x != 0 && y != 0){
         if(!(accum%div)){   // avoid integer overflow
@@ -44,7 +44,7 @@ int cal(int x,int y, long accum,long div){
             div = 1;
         }
         accum *= (x+y);
-        if (x > y)
+        if (x > y)  // 只需要用小的当分母
         {
             div *= y--;
         }else{
