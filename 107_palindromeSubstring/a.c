@@ -136,6 +136,7 @@ arr [ i ][ j ] 保存的就是公共子串的长度。
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  * */
+// pass. Time 16ms. Memory:6.2MB.
 /**
  * @param left 左边的字符
  * @param right 右边的字符
@@ -203,7 +204,10 @@ char * longestPalindrome(char * s){
     return palindrome;
 } 
 
-
+/**
+ * 动态规划，题解参见one note or leetcode.
+ * https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zui-chang-hui-wen-zi-chuan-by-leetcode-solution/
+ * */
 
 void main(){
     int result;
