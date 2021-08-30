@@ -132,7 +132,7 @@ public:
 
 空间复杂度：O(n + m)O(n+m)，其中 nn 和 mm 分别为两个链表的长度。递归调用 mergeTwoLists 
     函数时需要消耗栈空间，栈空间的大小取决于递归调用的深度。结束递归调用时 mergeTwoLists 
-    函数最多调用 n+mn+m 次，因此空间复杂度为 O(n+m)O(n+m)。
+    函数最多调用 n+m 次，因此空间复杂度为 O(n+m)O(n+m)。
 
 作者：LeetCode-Solution
 链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-leetcode-solu/

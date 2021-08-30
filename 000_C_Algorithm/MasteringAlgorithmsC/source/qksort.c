@@ -38,7 +38,7 @@ static int compare_int(const void *int1, const void *int2)
  @param i 元素分区起点
  @param k 元素分区终点
  @param compare 函数指针，用于比较两个成员大小（大于返回 1，小于返回 -1，等于返回 0）
- @return 成功返回 0；否则返回 -1
+ @return 成功返回分区的位置；否则返回 -1
  */
 static int partition(void *data, int esize, int i, int k,
                      int (*compare)(const void *key1, const void *key2))

@@ -81,7 +81,7 @@ bool hasCycle(struct ListNode *head) {
     temp1 = head->next;
     while (temp1 != NULL && temp1->next != NULL)
     {
-         struct ListNode *temp2;
+        struct ListNode *temp2;
         // check self circle
         if(temp1->next == temp1){
             return true;
