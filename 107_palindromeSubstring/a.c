@@ -7,23 +7,18 @@
 
 /** 
 示例 1：
-
 输入：s = "babad"
 输出："bab"
 解释："aba" 同样是符合题意的答案。
 示例 2：
-
 输入：s = "cbbd"
 输出："bb"
 示例 3：
-
 输入：s = "a"
 输出："a"
 示例 4：
-
 输入：s = "ac"
 输出："a"
- 
 
 提示：
 
@@ -144,7 +139,7 @@ arr [ i ][ j ] 保存的就是公共子串的长度。
  * @return >0:回文串长度. At least 1.
  * */
 int expandAroundCenter(const char *left,const char *right,int leftIndex){
-    int length = 0;
+  int length = 0;
     while ((leftIndex >= 0) &&(*right != '\0') && (*left)==(*right)) {
         length += 2;
         leftIndex--;
@@ -210,7 +205,7 @@ char * longestPalindrome(char * s){
  * */
 
 void main(){
-    int result;
+  int result;
     // char testString[] = "babad";
     char testString[] = "aaaa";
     // char *testString;

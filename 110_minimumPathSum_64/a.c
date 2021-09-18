@@ -12,7 +12,7 @@
 https://leetcode-cn.com/problems/minimum-path-sum/
  * */
 /**
- * 动态规划，标准方法
+ * 动态规划，标准方法.
  * leetcode 时间：8ms. 内存：7.3MB
  * */
 int minPathSum(int** grid, int gridSize, int* gridColSize){

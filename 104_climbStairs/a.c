@@ -68,7 +68,7 @@ int climbStairs(int n){
             }
         }
     }
-    return count;
+  return count;
 }
 
 // TODO: Leetcode上用了动态规划、矩阵乘法、递推公式等方法来解这道题，复杂度会比这个低，可以试试。

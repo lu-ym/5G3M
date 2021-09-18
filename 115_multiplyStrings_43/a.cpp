@@ -75,7 +75,7 @@ class Solution{
         string curr;  // 这次计算的结果
         int add = 0;  // 每次的进位
         for (int j = n-1; j >i; j--){ // 根据计算的位置，加上10进制的进位，后面补0
-          curr.push_back(0);  // 不管往string里面加数据
+          curr.push_back(0);  // 往string里面加数据
         }
         int y = num2.at(i) - '0';
         for (int j = m-1; j >= 0; j--){

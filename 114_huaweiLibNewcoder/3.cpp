@@ -34,11 +34,11 @@ int main(){
   scanf("%d%d",&m,&n);
   // 1不算素数，从2开始
   i=2;
-  f=1;
+  f=1;  // 总的素数个数
   q=0;  // 打印的素数的个数
   while(f <= n){  // 最多n个
     for(j=2;j*j<=i;j++)  // 最大到j*j=i
-      if(i%j==0) break; // 寻找<i的最大素数
+      if(i%j==0) break; // 判断i是不是素数
     if(j*j>i){  // 打印这个素数
       if(q%10>0)  // 非首和尾
         printf(" ");

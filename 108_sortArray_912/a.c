@@ -64,6 +64,7 @@ int* bobblingSort(int* nums, int numsSize){
 }
 /**
  * 插入:从第二个开始，每次把下一个值插入到前面的有序队列中
+ * PS： C有自己的排序函数qsort, 可以试试
  * 时间复杂度：n^2. 
  * leetcode还是在大的数组超时。
  * */
@@ -91,7 +92,7 @@ int* bobblingSort(int* nums, int numsSize){
  * */
 /**
  * 寻找一个中位数来把数组分成两部分，不一定需要等分.
- * @param nums  数组的头指针
+ * @param nums 数组的头指针
  * @param startLoc 分区起始的位置
  * @param endLoc 分区终止的位置
  * @return 新的右侧分区的头
@@ -148,60 +149,60 @@ int qksort(int* nums, int startLoc,int endLoc){
 // merge，两个都是排好序的，直接从左往后排即可
 // 把array2 取消掉可以，时间从392ms变成264ms,memory从89.1MB变成60.9MB
 int merge(int* nums,size_t startLoc,size_t middle,size_t endLoc){
-    int size1 = middle-startLoc ;
-    int pos1=0;
-    int *array1 = malloc(size1*sizeof(int));
-    if (array1 == NULL) return -1;
-    // array2需不需要？右边的不会覆盖可以用自带的数据？
-    memcpy(array1,&nums[startLoc],size1*sizeof(int)) ;   
-    while(pos1 < size1 || middle < endLoc){  // 至少一个数组没有空
-        if (pos1 >= size1)  // 第一个数组已经空了
-        {
-            nums[startLoc++] = nums[middle++];
-        }else if (middle >= endLoc) // 第二个数组已经空了
-        {
-            nums[startLoc++] = array1[pos1++];
-        }else{  // 两个数组都没有空
-            if (array1[pos1] > nums[middle])
-            {
-                nums[startLoc++] = nums[middle++];
-                /* code */
-            }else{
-                nums[startLoc++] = array1[pos1++];
-            }
-        }
-    } 
-    free(array1);
-    // manuallly malloc array2 
-    // int size2 = endLoc-middle ;
-    // int pos2 =0;
-    // int *array2 = malloc(size2*sizeof(int));
-    // if (array2 == NULL){
-    //     free(array1);
-    //     return -1;
-    // }
-    // memcpy(array1,&nums[startLoc],size1*sizeof(int)) ;   
-    // memcpy(array2,&nums[middle],size2*sizeof(int)) ;   
-    // while(pos1 < size1 || pos2 < size2){  // 至少一个数组没有空
-    //     if (pos1 >= size1)  // 第一个数组已经空了
-    //     {
-    //         nums[startLoc++] = array2[pos2++];
-    //     }else if (pos2 >= size2) // 第二个数组已经空了
-    //     {
-    //         nums[startLoc++] = array1[pos1++];
-    //     }else{  // 两个数组都没有空
-    //         if (array1[pos1] > array2[pos2])
-    //         {
-    //             nums[startLoc++] = array2[pos2++];
-    //             /* code */
-    //         }else{
-    //             nums[startLoc++] = array1[pos1++];
-    //         }
-    //     }
-    // } 
-    // free(array1);
-    // free(array2);
-    return 0;      
+  int size1 = middle-startLoc ;
+  int pos1=0;
+  int *array1 = malloc(size1*sizeof(int));
+  if (array1 == NULL) return -1;
+  // array2需不需要？右边的不会覆盖可以用自带的数据？
+  memcpy(array1,&nums[startLoc],size1*sizeof(int)) ;   
+  while(pos1 < size1 || middle < endLoc){  // 至少一个数组没有空
+      if (pos1 >= size1)  // 第一个数组已经空了
+      {
+          nums[startLoc++] = nums[middle++];
+      }else if (middle >= endLoc) // 第二个数组已经空了
+      {
+          nums[startLoc++] = array1[pos1++];
+      }else{  // 两个数组都没有空
+          if (array1[pos1] > nums[middle])
+          {
+              nums[startLoc++] = nums[middle++];
+              /* code */
+          }else{
+              nums[startLoc++] = array1[pos1++];
+          }
+      }
+  } 
+  free(array1);
+  // manuallly malloc array2 
+  // int size2 = endLoc-middle ;
+  // int pos2 =0;
+  // int *array2 = malloc(size2*sizeof(int));
+  // if (array2 == NULL){
+  //     free(array1);
+  //     return -1;
+  // }
+  // memcpy(array1,&nums[startLoc],size1*sizeof(int)) ;   
+  // memcpy(array2,&nums[middle],size2*sizeof(int)) ;   
+  // while(pos1 < size1 || pos2 < size2){  // 至少一个数组没有空
+  //     if (pos1 >= size1)  // 第一个数组已经空了
+  //     {
+  //         nums[startLoc++] = array2[pos2++];
+  //     }else if (pos2 >= size2) // 第二个数组已经空了
+  //     {
+  //         nums[startLoc++] = array1[pos1++];
+  //     }else{  // 两个数组都没有空
+  //         if (array1[pos1] > array2[pos2])
+  //         {
+  //             nums[startLoc++] = array2[pos2++];
+  //             /* code */
+  //         }else{
+  //             nums[startLoc++] = array1[pos1++];
+  //         }
+  //     }
+  // } 
+  // free(array1);
+  // free(array2);
+  return 0;      
 }
 int mgsort(int* nums,size_t startLoc,size_t endLoc){
     if (endLoc - startLoc < 2 ) return 0;

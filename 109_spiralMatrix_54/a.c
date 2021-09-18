@@ -66,39 +66,39 @@ int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSi
     return  flatMatrix;   
 }
 void main(){
-    // int test[3][3] = {{1,2,3},{4,5,6},{7,8,9}}; // 不能这么用，要严格传入int**
-    // malloc int**的初始化模式
-    int rowCount = 1;
-    int columnCount = 3;
-    int **test;
-    test = (int**)malloc(sizeof(int*)*rowCount);
-    if(test == NULL) return;
-    for (size_t i = 0; i < rowCount; i++)    {
-        test[i] = malloc(sizeof(int)*columnCount);
-        if (test[i] == NULL) {
-            while(i){
-                free(test[--i]);
-            }
-            free(test[i]);
-            return;
-        }
-    }
-    for(size_t i = 0; i < rowCount;i++){
-        for (size_t j = 0; j < columnCount; j++){
-            test[i][j] = i*columnCount + j +1;
-        }
-    }
-    int *result;
-    int returnSize = 0;
-    result = spiralOrder(test,rowCount,&columnCount,&returnSize);
-    for (size_t i = 0; i < returnSize; i++){
-        printf("%d ",result[i]);
-    }
-    printf("\r\n");
-    free(result);
-    for (size_t i = 0; i < rowCount; i++)    {
-            free(test[i]);
-    }
-    free(test);
-    return;
+  // int test[3][3] = {{1,2,3},{4,5,6},{7,8,9}}; // 不能这么用，要严格传入int**
+  // malloc int**的初始化模式
+  int rowCount = 1;
+  int columnCount = 3;
+  int **test;
+  test = (int**)malloc(sizeof(int*)*rowCount);
+  if(test == NULL) return;
+  for (size_t i = 0; i < rowCount; i++)    {
+      test[i] = malloc(sizeof(int)*columnCount);
+      if (test[i] == NULL) {
+          while(i){
+              free(test[--i]);
+          }
+          free(test[i]);
+          return;
+      }
+  }
+  for(size_t i = 0; i < rowCount;i++){
+      for (size_t j = 0; j < columnCount; j++){
+          test[i][j] = i*columnCount + j +1;
+      }
+  }
+  int *result;
+  int returnSize = 0;
+  result = spiralOrder(test,rowCount,&columnCount,&returnSize);
+  for (size_t i = 0; i < returnSize; i++){
+      printf("%d ",result[i]);
+  }
+  printf("\r\n");
+  free(result);
+  for (size_t i = 0; i < rowCount; i++)    {
+          free(test[i]);
+  }
+  free(test);
+  return;
 }

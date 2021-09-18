@@ -24,11 +24,11 @@
  * 求排列数 -- 阶乘的值，尾递归。
  * */ 
 int permuteNumi(int n,int result){ 
-    if(n == 1){
-        return result;
-    }else{
-        return permuteNumi(n-1,n*result);
-    }
+  if(n == 1){
+      return result;
+  }else{
+      return permuteNumi(n-1,n*result);
+  }
 }
 // int permuteNum(int n){   // 如果是API，这样比较友好。
 //     return permuteNumi(n,1);
@@ -45,22 +45,22 @@ void swap(int* array,int id0,int id1){
  * @param size 每个子数组的长度，也就是
  * */
 void backtrack(int **array,int arrayid,int size,int start){
-    // 终止条件，到达了末尾
-    if (start == (size-1)){
-        return;
+  // 终止条件，到达了末尾
+  if (start == (size-1)){
+    return;
+  }
+  int stepSize1 = permuteNumi(size-1-start,1); // next step pointer
+  for (size_t i = start; i < size; i++){
+    // swap value
+    swap(array[arrayid],start,i);
+    for (size_t j = 1; j < stepSize1; j++){ // change all subarray
+      memcpy(array[arrayid+j],array[arrayid],sizeof(int)*size);
     }
-    int stepSize1 = permuteNumi(size-1-start,1); // next step pointer
-    for (size_t i = start; i < size; i++){
-        // swap value
-        swap(array[arrayid],start,i);
-        for (size_t j = 1; j < stepSize1; j++){ // change all subarray
-            memcpy(array[arrayid+j],array[arrayid],sizeof(int)*size);
-        }
-        // next level swap
-        backtrack(array,arrayid,size,start+1);
-        // recall. Just move pointer because use different array pointer.
-        arrayid+= stepSize1;
-    }
+    // next level swap
+    backtrack(array,arrayid,size,start+1);
+    // recall. Just move pointer because use different array pointer.
+    arrayid+= stepSize1;
+  }
 }
 int** permute(int* nums, int numsSize, int* returnSize, int** returnColumnSizes){
     *returnSize = permuteNumi(numsSize,1);

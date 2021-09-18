@@ -39,7 +39,7 @@ int main(){
 	char Weekday[7][4]={"MON","TUE","WED","THU","FRI","SAT","SUN"};
 	if((scanf("%s%s%s%s",a1,a2,b1,b2))!=EOF){
 		for(int i=0;times<2 && i<=60;i++){
-      //找第一次出现相同的大写字母。居然在同一个位置？不是的话，要首尾依次看
+      //找第一次出现相同的大写字母。居然在同一个位置。不是的话，要首尾依次看
 			if((a1[i]==a2[i]) && (a1[i]>='A'&&a1[i]<='G')&& times==0){  
 				times++;
 				int num=a1[i]-'A';
@@ -60,6 +60,7 @@ int main(){
       }
 		}
 		times=0;
+    // 寻找分钟数
 		for(int i=0;times<1;i++){
 			if(b1[i]==b2[i]&&((b1[i]>='A'&&b1[i]<='Z')||(b1[i]>='a'&&b1[i]<='z'))){
 				times++;

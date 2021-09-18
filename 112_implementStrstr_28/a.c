@@ -92,31 +92,33 @@
  * */
 #define LETTERNUM 26
 int strStr(char * haystack, char * needle){
-    int n = strlen(haystack);
-    int m = strlen(needle);
-    if (m==0) return 0;    
-    int letterTable[LETTERNUM];
-    for (size_t i = 0; i < LETTERNUM; i++) {
-        letterTable[i] = m+1;
-    }
-    // memset(letterTable,0,sizeof(int)*LETTERNUM);//int不能用memset值非0的数
-    for (size_t i = 0; i < m; i++){
-        int temp = needle[i] - 'a';
-        letterTable[needle[i] - 'a'] = m-i; // offset
-    }
+  int n = strlen(haystack);
+  int m = strlen(needle);
+  if (m==0) return 0;    
+  int letterTable[LETTERNUM];
+  // memset(letterTable,0,sizeof(int)*LETTERNUM);//int不能用memset值非0的数
+  for (size_t i = 0; i < LETTERNUM; i++) {  // init offset table
+    letterTable[i] = m+1;
+  }
+  // update offset table
+  for (size_t i = 0; i < m; i++){
+    int temp = needle[i] - 'a';
+    letterTable[needle[i] - 'a'] = m-i; // offset
+  }
+  // search
+  for (size_t i = 0; i < n; ){
     for (size_t i = 0; i < n; ){
-        for (size_t i = 0; i < n; ){
-        size_t j = 0;
-        for (; j < m && (j <n-i); j++){
-            if(haystack[i+j]!=needle[j]) break;
-        }
-        if (j == m) return i;
-        if ((i+j)>=n) break;        
-        if ((i+m)>=n) break;        
-        i += letterTable[haystack[i+m]-'a'] ;
+    size_t j = 0;
+    for (; j < m && (j <n-i); j++){
+        if(haystack[i+j]!=needle[j]) break;
     }
-    }
-    return -1;
+    if (j == m) return i;
+    if ((i+j)>=n) break;        
+    if ((i+m)>=n) break;        
+    i += letterTable[haystack[i+m]-'a'] ;
+  }
+  }
+  return -1;
 }
 void main(){
     // char *haystack = "hello";
