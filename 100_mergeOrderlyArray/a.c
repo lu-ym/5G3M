@@ -48,7 +48,7 @@
 //             j++;
 //         }
 //     }
-    
+
 // }
 
 // leetcode思路，因为数组内部也是有序的，就按顺序先倒着放大的，最后再剩余的小的。
@@ -71,9 +71,9 @@
 /**
  * C语言的实现
  * 9ms, 508KB
- * @param A int整型一维数组 
+ * @param A int 整型一维数组 
  * @param ALen int A数组长度
- * @param B int整型一维数组 
+ * @param B int 整型一维数组 
  * @param BLen int B数组长度
  * @return void
  */
